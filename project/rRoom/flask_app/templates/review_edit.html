@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit Review</title>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+                <h1>Edit A Review</h1>
+                <div>
+                    <a href="/dashboard" class="btn btn-primary">Home</a>
+                    <a href="/users/logout" class="btn btn-danger">Log out</a>
+                </div>  
+        </div>
+            {% for message in get_flashed_messages() %}
+            <p class="text-danger">{{message}}</p>
+            {% endfor %}
+            <div>
+                <h4>Your Review</h4>
+                <form action="/reviews/{{this_review.id}}/update" method="post" class="form-control flex-column d-flex">
+                    <label for="restroom_id" class="form-label">Where (Check Your Where):</label>
+                    <select name="restroom_id" id="restroom_id">
+                        {% for one_restroom in all_restrooms %}
+                        <option value="{{one_restroom.id}}">{{one_restroom.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="date" class="form-label">Date:</label>
+                    <input type="date" name="date" id="date" class="form-control" value="{{this_review.date}}">
+                    <label for="cleanliness">Clean</label>
+                    <select name="cleanliness" id="cleanliness">
+                        <option value="1" {%if this_review.cleanliness == 1%}selected{%endif%}>Yes</option>
+                        <option value="0" {%if this_review.cleanliness == 0%}selected{%endif%}>No</option>
+                    </select>
+                    <label for="privacy">Private</label>
+                    <select name="privacy" id="privacy">
+                        <option value="1" {%if this_review.privacy == 1%}selected{%endif%}>Yes</option>
+                        <option value="0" {%if this_review.privacy == 0%}selected{%endif%}>No</option>
+                    </select>
+                    <label for="comment">Comment</label>
+                    <textarea name="comment" id="comment" cols="30" rows="10">{{this_review.comment}}</textarea>
+                    <label for="rating">Rating</label>
+                    <select name="rating" id="rating">
+                        <option value="1" {%if this_review.rating == 1%}selected{%endif%}>1 Star</option>
+                        <option value="2" {%if this_review.rating == 2%}selected{%endif%}>2 Stars</option>
+                        <option value="3" {%if this_review.rating == 3%}selected{%endif%}>3 Stars</option>
+                        <option value="4" {%if this_review.rating == 4%}selected{%endif%}>4 Stars</option>
+                        <option value="5" {%if this_review.rating == 5%}selected{%endif%}>5 Stars</option>
+                    </select>
+                    <button class="btn btn-primary">Submit</button>                       
+                </form>
+            </div>
+    </div>
+
+
+
+</body>
+</html>

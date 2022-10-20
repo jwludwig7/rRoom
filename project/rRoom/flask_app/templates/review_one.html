@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>View Review</title>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h1>Welcome, {{logged_user.first_name}}!</h1>
+            <div>
+                <a href="/dashboard" class="btn btn-primary">Home</a>
+                <a href="/users/logout" class="btn btn-danger">Log out</a>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h2>{{this_review.restroom.name}}</h2>
+            <h4>Posted by: {{this_review.planner.first_name}} {{this_review.planner.last_name}}</h4>
+            <h4>Date Reviewed:{{this_review.date}}</h4>
+            <h4>Rating:{{this_review.rating}} Star(s)</h4>
+        </div>
+        <div class="card p-2">
+            <p>Cleanliness:{% if this_review.cleanliness == 1 %}Yes{% else %}No{%endif%}</p>
+            <p>Private:{% if this_review.privacy == 1 %}Yes{% else %}No{%endif%}</p>
+            <p>Comments: {{this_review.comment}}</p>
+        </div>
+    
+    </div>
+
+
+</body>
+</html>

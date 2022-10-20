@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>New Restroom</title>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between">
+                <h1>Add New Restroom</h1>
+                <div>
+                    <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+                    <a href="/users/logout" class="btn btn-danger">Log out</a>
+                </div>  
+        </div>
+            {% for message in get_flashed_messages() %}
+            <p class="text-danger">{{message}}</p>
+            {% endfor %}
+            <div>
+                <h4>New Restroom</h4>
+                <form action="/restrooms/create" method="post" class="form-control flex-column d-flex">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                    <label for="location" class="form-label">Location (longitude and latitude):</label>
+                    <input type="text" name="location" id="location" class="form-control">
+                    <label for="type" class="form-label">Type:</label>
+                    <select name="type" id="type" class="form-control">
+                        <option value="1">One for everyone</option>
+                        <option value="2">Mens and Womans Room</option>
+                        <option value="3">Other</option>
+                    </select>
+                    <label for="size" class="form-label">Size:</label>
+                    <select name="size" id="size" class="form-control">
+                        <option value="1">Solo</option>
+                        <option value="2">Multi Stall</option>
+                        <option value="3">3 or More Stalls</option>
+                    </select>
+                    <label for="comment">Comment:</label>
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    <button class="btn btn-primary">Report</button>                       
+                </form>
+            </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+<title>rRoom</title>
+</head>
+
+<body class="bg-light">
+        <div class="container">
+            <h1>rRoom</h1>
+            <div class="row">
+                <div class="col">
+                    <!-- flash message is there is a issue with register form -->
+                    <!-- form to register -->
+                    <h3>Register to Leave a Review</h3>
+                    {% for message in get_flashed_messages(category_filter=['reg']) %}
+                    <p class="text-danger">{{message}}</p>
+                    {%endfor%}
+                    <form class="form-control flex-column d-flex" action="/users/register" method="post">
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name:</label>
+                        <input type="text" name="first_name" id="first_name" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">last Name:</label>
+                        <input type="text" name="last_name" id="last_name" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" name="email" id="email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_pass" class="form-label">Confirm Password:</label>
+                        <input type="password" name="confirm_pass" id="confirm_pass" class="form-control">
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            
+            <div class="col">
+                <h3>Login Here</h3>
+                <!-- flash message if there is a issue with login part -->
+                <!-- form to login -->
+                {% for message in get_flashed_messages(category_filter=['log']) %}
+                <p class="text-danger">{{message}}</p>
+                {%endfor%}
+                <form class="form-control flex-column d-flex" action="/users/login" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" name="email" id="email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                    <button class="btn btn-secondary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bottomDiv spacing">
+        <h4 class="text-center">Find Restrooms Near You</h4>
+        <div id="map"></div>
+    </div>
+    
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFZUrHlAqA8wVZpYiOiYkoucJlqkLdjqQ&libraries=places&callback=initMap">
+    async
+</script>    
+</body>
+
+</html>
